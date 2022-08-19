@@ -1,0 +1,6 @@
+venv
+Test_Cases/log.html
+Test_Cases/report.html
+Test_Cases/output.xml
+Resources/Variables/__pycache__/
+Resources/Variables/SVars.py
