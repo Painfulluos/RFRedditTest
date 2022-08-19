@@ -21,3 +21,21 @@ Find Thread
 	${thread_fullname}=	Catenate	${response.json()['data']['children'][0]['data']['name']}
 
 	[Return]	${thread_fullname}
+
+Submit Comment
+	[Arguments]		${headers}		${thread_fullname}
+	
+	${data}=	Create Dictionary	parent=${thread_fullname}	text=${post_text}
+
+	${response}=	Post On Session		threadWorks		${api_comment} 	data=${data}	headers=${headers}
+	Status Should Be 	200		${response}
+
+	${comment_fullname}=	Catenate	${response.json()['jquery'][-4][3][0][0]['data']['name']}
+
+	[Return]	${comment_fullname}
+
+Remove Comment
+	[Arguments]		${headers}	${comment_fullname}
+	${data}=	Create Dictionary	id=${comment_fullname}
+	${response}=	POST On Session		threadWorks	${api_del}	data=${data}	headers=${headers}
+	Status Should Be	200		${response}

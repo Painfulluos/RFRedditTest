@@ -19,4 +19,8 @@ Reddit test
 	${response}= 	GET On Session		auth	${api_get_me}	headers=${headers}
 	Status Should Be	200		${response}
 
-	Find Thread		${headers}
+	${thread}=	Find Thread		${headers}
+
+	${comment}=	Submit Comment		${headers}		${thread}
+
+	Remove Comment		${headers}		${comment}
