@@ -7,6 +7,7 @@ Variables 	../Resources/Variables/api_data.py
 Variables 	../Resources/Variables/config.py
 
 Resource 	../Resources/Keywords/auth.robot
+Resource 	../Resources/Keywords/reddit_works.robot
 
 
 *** Test Cases ***
@@ -18,4 +19,4 @@ Reddit test
 	${response}= 	GET On Session		auth	${api_get_me}	headers=${headers}
 	Status Should Be	200		${response}
 
-	LOG		${response}
+	Find Thread		${headers}
